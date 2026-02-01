@@ -79,7 +79,7 @@ nano day_1.sh
 chmod +x day_1.sh
 
 5.Run script:
-./log_setup.sh
+./day_1.sh
 
 
 
