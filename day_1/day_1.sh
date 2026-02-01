@@ -1,4 +1,8 @@
-gitmkdir app_logs
+# You can copy and paste these commands into the terminal and run them step by step.
+# or 
+# follow the step in readme.txt
+
+mkdir app_logs
 cd app_logs
 
 echo "INFO App started" > app1.log

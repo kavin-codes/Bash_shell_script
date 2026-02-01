@@ -1,4 +1,4 @@
-📌 Project Title
+📌 Task day_1
 
 Linux Log File Analysis and Backup Automation
 
@@ -64,3 +64,22 @@ Create a directory named backup
 Move all .log files into the backup directory
 
 List and verify files inside the backup directory
+
+----------------------------------------------------------------------------------------------------
+
+
+1. Create a file:
+nano day_1.sh
+
+2.Paste all commands inside
+
+3.Save and exit ( esc, :wq)
+
+4.Make executable:
+chmod +x day_1.sh
+
+5.Run script:
+./log_setup.sh
+
+
+
