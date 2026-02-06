@@ -156,3 +156,116 @@ echo "Script Execution Status: $STATUS"       # Show script status
 if [[ -n "$alerts" ]]; then
     echo -e "$alerts" | $MAIL_CMD -s "$EMAIL_SUBJECT" "$EMAIL_TO" # Send alert email
 fi
+
+
+
+WITHOUT FULL Absolute PATH #!/bin/bash
+
+LOG_DIR="/home/kavin/server3_logs"
+DASHBOARD="/home/kavin/server3_logs/log_dashboard.txt"
+TREND_FILE="/home/kavin/server3_logs/daily_logs.txt"
+
+TODAY=$(date +%F)
+TIME_NOW=$(date '+%H:%M:%S')
+STATUS="SUCCESS"
+
+EMAIL_TO="admin@example.com"
+EMAIL_SUBJECT="Log Trend Alert – $TODAY"
+
+total_error=0
+total_warning=0
+total_critical=0
+files_processed=0
+alerts=""
+
+# -----------------------------
+# Read all log files
+# -----------------------------
+for logfile in "$LOG_DIR"/*.log; do
+    [[ -f "$logfile" ]] || continue
+
+    error=$(grep -i error "$logfile" | wc -l)
+    warning=$(grep -i warning "$logfile" | wc -l)
+    critical=$(grep -i critical "$logfile" | wc -l)
+
+    total_error=$((total_error + error))
+    total_warning=$((total_warning + warning))
+    total_critical=$((total_critical + critical))
+    files_processed=$((files_processed + 1))
+done
+
+# -----------------------------
+# Save today’s trend data
+# -----------------------------
+echo "$TODAY $total_error $total_critical" >> "$TREND_FILE"
+
+# -----------------------------
+# Load last 4 days of data
+# -----------------------------
+mapfile -t last_days < <(tail -n 4 "$TREND_FILE")
+
+# -----------------------------
+# Trend detection
+# -----------------------------
+if [[ ${#last_days[@]} -eq 4 ]]; then
+    today_errors=$(awk '{print $2}' <<< "${last_days[3]}")
+
+    sum=0
+    for i in 0 1 2; do
+        sum=$((sum + $(awk '{print $2}' <<< "${last_days[$i]}")))
+    done
+
+    avg_3day=$((sum / 3))
+
+    if [[ $avg_3day -gt 0 ]]; then
+        increase=$(( (today_errors - avg_3day) * 100 / avg_3day ))
+        if [[ $increase -gt 50 ]]; then
+            alerts+="Errors increased by ${increase}% compared to last 3 days\n"
+        fi
+    fi
+
+    critical_days=0
+    for i in 2 3; do
+        crit=$(awk '{print $3}' <<< "${last_days[$i]}")
+        [[ $crit -gt 0 ]] && ((critical_days++))
+    done
+
+    if [[ $critical_days -eq 2 ]]; then
+        alerts+="Critical events detected 2 consecutive days\n"
+    fi
+fi
+
+# -----------------------------
+# Generate dashboard report
+# -----------------------------
+{
+echo "Log Dashboard Summary"
+echo "=============================="
+echo "Date: $TODAY"
+echo "Time: $TIME_NOW"
+echo
+echo "Date-wise Log Counts (Today)"
+echo "------------------------------"
+echo "Errors   : $total_error"
+echo "Warnings : $total_warning"
+echo "Critical : $total_critical"
+echo
+echo "Total log files processed today: $files_processed"
+echo
+echo "Trend Alerts"
+echo "------------------------------"
+if [[ -n "$alerts" ]]; then
+    echo -e "$alerts"
+else
+    echo "No trend alerts detected"
+fi
+echo
+echo "Script Execution Status: $STATUS"
+} > "$DASHBOARD"
+
+# -----------------------------
+# Send email if alerts exist
+# -----------------------------
+if [[ -n "$alerts" ]]; then
+    echo -e "$alerts" | mail -s "$EMAIL_SUBJECT" "$EMAIL_TO"
+fi
