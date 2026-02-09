@@ -1,6 +1,6 @@
 # You can copy and paste these commands into the terminal and run them step by step.
 # or 
-# follow the step in readme.txt
+# follow the step in readme.txt 
 
 mkdir app_logs
 cd app_logs
