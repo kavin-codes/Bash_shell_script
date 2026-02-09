@@ -122,3 +122,5 @@ zombies=$(ps -eo stat | grep -c '^Z')
 
 # Print the total zombie process count
 echo "Zombie processes found: $zombies"
+
+

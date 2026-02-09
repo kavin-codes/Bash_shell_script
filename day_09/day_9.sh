@@ -22,3 +22,5 @@ echo "Memory usage: $usage_memory%"
 
 zombies=$(ps -eo stat | grep -c '^Z')
 echo "Zombie processes found: $zombies"
+
+
