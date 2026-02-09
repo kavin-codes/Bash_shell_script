@@ -1,5 +1,6 @@
 # follow day 4 setup script 
 
+
 #!/bin/bash
 
 log_directory="/home/kavin/server1_logs"
