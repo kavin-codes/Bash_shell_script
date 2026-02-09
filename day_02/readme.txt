@@ -1,6 +1,7 @@
 🗂️ Task Title (01-02-2026)
 Day 2 – Bash Script for Log Monitoring & Cleanup
 
+
 📝 Task Description
 You will create ONE bash script file that does all the below tasks.
 
