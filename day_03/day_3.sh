@@ -1,4 +1,3 @@
-
 # setup file
 
 mkdir server_logs

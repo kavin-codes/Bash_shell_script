@@ -1,6 +1,5 @@
 Task Title (02-02-2026)
 Day 3 – Automated Log Analysis with Alerts & Cleanup
-
 Tasks to Perform (in order)
 
 1️⃣ Setup
