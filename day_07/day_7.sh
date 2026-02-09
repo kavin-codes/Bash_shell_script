@@ -97,3 +97,5 @@ echo "Script Execution Status: $STATUS"
 if [[ -n "$alerts" ]]; then
     echo -e "$alerts" | $MAIL_CMD -s "$EMAIL_SUBJECT" "$EMAIL_TO"
 fi
+
+

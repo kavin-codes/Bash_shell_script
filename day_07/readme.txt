@@ -3,6 +3,7 @@ Day 7 Task (06-02-2026)
 🟢 Day 7 Task – Centralized Log Dashboard & Trend Alerts
 
 🎯 Objective
+
 Enhance your log-monitoring system by adding:
 • Centralized log summary across multiple days
 • Trend detection for errors and critical events
