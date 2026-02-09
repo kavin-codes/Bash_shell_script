@@ -1,5 +1,6 @@
 # Bash_shell_script
 
+Note: Folder names have been updated for consistency. This required recommitting the changes, so commit timestamps may appear modified even though the task content remains the same. (first 9 day) 
 
 day_01  → Day 1 – Linux Log Analysis & Backup
 day_02  → Day 2 – Bash Script for Log Monitoring & Cleanup
@@ -11,3 +12,6 @@ day_07  → Day 7 – Centralized Log Dashboard & Trend Alerts
 day_08  → Day 8 – Log Rotation, Archiving & Retention Policy
 day_09  → Day 9 – Linux Process & Resource Monitoring
 day_10  → Day 10 – Linux Automation & Monitoring Tasks
+
+
+
