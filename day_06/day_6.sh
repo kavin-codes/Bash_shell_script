@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 # -- VARIABLES --
 LOG_DIR="/home/kavin/server3_logs"
 
