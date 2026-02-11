@@ -196,7 +196,7 @@ done
 
 
 
-
+cron :
 
 30 6 * * * /home/kavin/server_logs/day_11.sh \
 >> /home/kavin/server_logs/cron.log 2>&1
