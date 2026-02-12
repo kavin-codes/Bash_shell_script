@@ -1,0 +1,62 @@
+{
+  # Print section header for targeted usernames
+  echo "Top Targeted Users:"
+
+  # 1) Search auth.log for failed SSH login attempts
+  # 2) Extract the username field (9th column)
+  # 3) Sort usernames
+  # 4) Count how many times each username appears
+  # 5) Sort counts in descending order
+  # 6) Show only top 5 targeted usernames
+  grep -a "Failed password" /var/log/auth.log \
+  | awk '{print $9}' \
+  | sort \
+  | uniq -c \
+  | sort -nr \
+  | head -5
+
+
+  # Print a blank line for readability
+  echo ""
+
+
+  # Print section header for attacking IPs
+  echo "Top Attacking IPs:"
+
+  # 1) Filter failed SSH attempts
+  # 2) Extract source IP address (11th column)
+  # 3) Sort IP addresses
+  # 4) Count number of attempts per IP
+  # 5) Sort from highest to lowest
+  # 6) Display top 5 attacking IPs
+  grep -a "Failed password" /var/log/auth.log \
+  | awk '{print $11}' \
+  | sort \
+  | uniq -c \
+  | sort -nr \
+  | head -5
+
+
+  # Print a blank line for readability
+  echo ""
+
+
+  # Print section header for peak attack hours
+  echo "Attack Peak Hours:"
+
+  # 1) Filter failed SSH attempts
+  # 2) Extract the time field (HH:MM:SS)
+  # 3) Cut only the hour (HH)
+  # 4) Sort hours
+  # 5) Count failed attempts per hour
+  # 6) Sort hours by highest attack count
+  grep -a "Failed password" /var/log/auth.log \
+  | awk '{print $3}' \
+  | cut -d: -f1 \
+  | sort \
+  | uniq -c \
+  | sort -nr
+
+# Redirect the complete output of all above commands
+# into a single SOC-style report file
+} > /home/kavin/server_logs/day_13_mini_soc_report.txt
