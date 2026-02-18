@@ -81,13 +81,9 @@ if [ -s "$CRITICAL_LOG" ]; then
     mail -s "Critical Security Alerts - $DATE" admin@example.com < "$CRITICAL_LOG"        #  Task 19 Addition: Email critical threats
 fi
 
-# ==============================
-# 5) ARCHIVE & COMPRESS REPORT
-# ==============================
+
 mv "$REPORT_FILE" "$ARCHIVE_DIR/"                                                            # Move report to archive
 gzip "$ARCHIVE_DIR/security_alerts_$DATE.log"                                                #  Compress report
 
-# ==============================
-# 6) RETENTION POLICY
-# ==============================
+
 find "$ARCHIVE_DIR" -name "*.gz" -mtime +7 -delete                                           #  Delete reports older than 7 days
