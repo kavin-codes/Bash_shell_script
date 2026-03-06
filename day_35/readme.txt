@@ -1,7 +1,7 @@
 
 
 Task day_35 (06-03-2026) 
-🧪 Day 35: Count the Number of Elements in an Array using Bash Script
+🧪 Day 35-Count the Number of Elements in an Array using Bash Script
 
 
 ==========================================================================
