@@ -7,7 +7,6 @@ Day 55:Find second largest number
 
 
 #!/bin/bash
-
 # Step 1: Declare an array
 arr=(10 20 4 45 99)
 
