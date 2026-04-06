@@ -1,7 +1,6 @@
 Task day 65 (05-03-2026) 
 Day 65-Sum column values
 
-
 #!/bin/bash
 
 # Input file
