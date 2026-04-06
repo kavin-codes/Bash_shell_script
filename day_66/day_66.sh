@@ -1,7 +1,6 @@
 #!/bin/bash
 file="data.csv"
 col=2
-
 awk -F',' -v column=$col '
 {
     sum += $column   # Add value to sum

@@ -1,7 +1,6 @@
 Task day 66 (06-03-2026) 
 Day 66-Average Column Values
 
-
 #!/bin/bash
 
 # Input file
