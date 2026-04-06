@@ -3,7 +3,7 @@ Day 64-Convert CSV to TSV
 
 #!/bin/bash
 
-# Input CSV file
+# Input CSV file.
 input="data.csv"
 
 # Output TSV file
