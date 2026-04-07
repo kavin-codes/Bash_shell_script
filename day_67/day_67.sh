@@ -1,0 +1,1 @@
+sed '/^$/d' input.txt > output.txt
